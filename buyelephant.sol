@@ -117,6 +117,7 @@ contract DduOrder  {
         return status;
     }
 
+    // @dev register DDU inside Rosreestr
     function reserveInRosreestr() isRosreestr returns (uint)  {
         if(status != 3)
             throw;
@@ -126,6 +127,7 @@ contract DduOrder  {
         return status;
     }
 
+    // @dev charge "frozen" money from account
     function chargedInFds() isFds returns (uint) {
         if(status != 4)
             throw;
@@ -133,10 +135,11 @@ contract DduOrder  {
             status=5;
             balanceSeller-=balanceFrost;
             balanceFrost=0;
-    }
-     return status;
+        }
+        return status;
     }
 
+    // @dev pay money for the DDU registration
     function buerSendMoney() isBuyer returns (uint) {
         if(status != 5)
             throw;
@@ -146,6 +149,7 @@ contract DduOrder  {
         return status;
     }
 
+    // @dev launch building in production mode!
     function buildingIsComplete() isFds returns (uint)  {
         if(status != 6)
             throw;
@@ -154,6 +158,7 @@ contract DduOrder  {
         return status;
     }
 
+    // @dev done with DDU document registration
     function dduComplete() isRosreestr returns (uint) {
         if(status != 7)
             throw;
